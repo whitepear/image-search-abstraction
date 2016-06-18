@@ -1,0 +1,31 @@
+{
+  "name": "image_abstraction",
+  "version": "1.0.0",
+  "description": "FreeCodeCamp coursework.",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whitepear/image-search-abstraction.git"
+  },
+  "keywords": [
+    "FreeCodeCamp",
+    "Search",
+    "API",
+    "Node",
+    "Express",
+    "MongoDB"
+  ],
+  "author": "whitepear",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/whitepear/image-search-abstraction/issues"
+  },
+  "homepage": "https://github.com/whitepear/image-search-abstraction#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "mongodb": "^2.1.18"
+  }
+}
