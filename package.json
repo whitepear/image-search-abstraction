@@ -26,6 +26,7 @@
   "homepage": "https://github.com/whitepear/image-search-abstraction#readme",
   "dependencies": {
     "express": "^4.14.0",
-    "mongodb": "^2.1.18"
+    "mongodb": "^2.1.18",
+    "request": "^2.72.0"
   }
 }
