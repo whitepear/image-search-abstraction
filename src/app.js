@@ -32,18 +32,22 @@ app.get("/", function (req, res) {
 });
 
 app.get('/:searchTerm', function (req, res) {
-  if (req.params.searchTerm) {
-    var searchTerm = req.params.searchTerm;
-    var searchURL = googleAPI + searchTerm;
-  }
-
-  if (req.query.offset) {
-    var offsetQuery = req.query.offset;
-  }
   
-  request(searchURL, function (err, apiRes, body) {
-    if (!err && apiRes.statusCode == 200) {
-      var bodyObj = JSON.parse(apiRes.body);      
+  var searchTerm = req.params.searchTerm;
+  var searchURL = googleAPI + searchTerm;  
+  
+  if (req.query.offset && !isNaN(req.query.offset)) {
+    console.log('Setting offsetQuery to query entry.');
+    var offsetQuery = req.query.offset;
+  } else {
+    console.log('Setting offsetQuery to 0.');
+    offsetQuery = 0;       
+  }
+  searchURL = searchURL + '&start=' + offsetQuery; 
+  
+  request(searchURL, function (err, APIRes, body) {
+    if (!err && APIRes.statusCode == 200) {
+      var bodyObj = JSON.parse(APIRes.body);      
       var filteredResults = [];
       
       for (var i = 0; i < bodyObj.items.length; i++) {
@@ -74,5 +78,5 @@ app.get('/:searchTerm', function (req, res) {
       res.send(filteredResults);  
     }
   });
-  
+
 });
