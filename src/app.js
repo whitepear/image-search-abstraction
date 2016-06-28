@@ -30,11 +30,15 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + '/index.html');  
 }); // end /
 
-app.get('/img', function (req, res) {
-  // DISPLAY RECENT SEARCHES
-  // imgCollection.find({}, {"sort" : ['when', 'asc']} ).toArray(function(err,docs) {});
-  // When request is made, cull oldest searches until only the 25 latest display
-  // This avoids async issues if deletion were instead handled within the searchTerm handler
+// display recent searches
+app.get('/img', function (req, res) {  
+  imgCollection.find({}, {_id: 0}).sort({when: -1}).limit(25).toArray(function (err, docs) {
+    if (err) {
+      console.log('/img route error');
+    } else {
+      res.send(docs);
+    }
+  }); // end .find()  
 }); // end /img
 
 // /img/searchTerm route serves API call
