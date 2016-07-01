@@ -1,9 +1,9 @@
-// FIND A WAY TO REMOVE ESCAPE BACKSLASH ON QUOTES
-
 var express = require('express');
-var app = express();
-
 var request = require('request');
+var path = require('path');
+
+var app = express();
+app.use(express.static(path.join(__dirname, 'public')));
 
 // MongoDB variables
 var mongodb = require('mongodb');
@@ -29,7 +29,7 @@ MongoClient.connect(mongoUrl, function(err, database) {
 
 // root route serves instructions
 app.get("/", function (req, res) {
-  res.sendFile(__dirname + '/index.html');  
+  res.sendFile(__dirname + '/public/index.html');  
 }); // end '/'
 
 // display recent searches
