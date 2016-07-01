@@ -1,3 +1,5 @@
+// FIND A WAY TO REMOVE ESCAPE BACKSLASH ON QUOTES
+
 var express = require('express');
 var app = express();
 
@@ -28,7 +30,7 @@ MongoClient.connect(mongoUrl, function(err, database) {
 // root route serves instructions
 app.get("/", function (req, res) {
   res.sendFile(__dirname + '/index.html');  
-}); // end /
+}); // end '/'
 
 // display recent searches
 app.get('/img', function (req, res) {  
@@ -39,7 +41,7 @@ app.get('/img', function (req, res) {
       res.send(docs);
     }
   }); // end .find()  
-}); // end /img
+}); // end '/img'
 
 // /img/searchTerm route serves API call
 app.get('/img/:searchTerm', function (req, res) {
@@ -97,11 +99,15 @@ app.get('/img/:searchTerm', function (req, res) {
             imageLink = 'Missing';
           }
 
-          var searchResult = '{ "url": ' + pageLink + ', "description": ' + imageTitle + ', "image_url": ' + imageLink + ' }';
+          var searchResult = { 
+            url: pageLink,
+            description: imageTitle,
+            image_url: imageLink
+          };
           filteredResults.push(searchResult);
         }       
-        res.send(filteredResults);  
+        res.json(filteredResults);  
       }
     }); // end request
   }); // end imgCollection.insertOne  
-}); // end /img/:searchTerm route
+}); // end '/img/:searchTerm'
