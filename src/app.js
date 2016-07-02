@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
 // var mongoUrl = 'mongodb://localhost:27017/image_abstract';
-var mongoUrl = process.env.VARGOESHERE;
+var mongoUrl = process.env.MLAB_ABSTRACT_DB;
 var db;
 var imgCollection;
 
