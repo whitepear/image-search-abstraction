@@ -9,7 +9,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // MongoDB variables
 var mongodb = require('mongodb');
 var MongoClient = mongodb.MongoClient;
-var mongoUrl = 'mongodb://localhost:27017/image_abstract';
+// var mongoUrl = 'mongodb://localhost:27017/image_abstract';
+var mongoUrl = process.env.VARGOESHERE;
 var db;
 var imgCollection;
 
@@ -24,8 +25,8 @@ MongoClient.connect(mongoUrl, function(err, database) {
   imgCollection = db.collection('image_abstract');
 
   // Start the application after the database connection is ready
-  app.listen(3000);
-  console.log("Listening on port 3000");
+  app.listen(process.env.PORT || 3000);
+  console.log("Listening...");
 });
 
 // root route serves instructions
