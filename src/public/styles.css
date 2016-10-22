@@ -1,11 +1,14 @@
 body {
-	font-family: arial;
+  margin-top: 50px;
+  font-family: 'Open Sans', sans-serif;
+  background: #eee;
+  color: #333;
 }
 
-div {
-	width: 90%;
-	max-width: 500px;
-	margin: 75px auto 0;
+.container {
+	width: 99%;
+	max-width: 900px;
+	margin: 0 auto;
 }
 
 .example {
